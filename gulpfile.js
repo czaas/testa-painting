@@ -28,7 +28,7 @@ gulp.task('css', function(){
 		.pipe(sass({ indentedSyntax: true }))
 		.pipe(autoPrefix())
 		.pipe(minifyCss())
-		.pipe(gulp.dest('./css/*.css'))
+		.pipe(gulp.dest('./css/'))
 		.pipe(reload({stream: true}));
 });
 
