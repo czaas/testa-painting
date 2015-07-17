@@ -6,7 +6,8 @@ var gulp = require('gulp'),
 	reload = bs.reload,
 	minifyCss = require('gulp-minify-css'),
 	jsHint = require('gulp-jshint'),
-	jsUglify = require('gulp-uglify');
+	jsUglify = require('gulp-uglify'),
+	concat = require('gulp-concat');
 
 gulp.task('reload', function(){
 	bs.init({
@@ -33,11 +34,12 @@ gulp.task('css', function(){
 });
 
 gulp.task('js', function(){
-	gulp.src('./js/*.js')
+	gulp.src(['./js/testimonials.js','./js/shuffle.js','./js/main.js'])
+		.pipe(concat('concat.js'))
 		.pipe(jsHint())
 		.pipe(jsHint.reporter('jshint-stylish'))
 		.pipe(jsUglify())
-		.pipe(gulp.dest('./js/ready/'))
+		.pipe(gulp.dest('./js'))
 		.pipe(reload({stream: true}));
 });
 
