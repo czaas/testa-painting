@@ -2,11 +2,10 @@
 // http://bost.ocks.org/mike/shuffle/ 
 function shuffle(arr){
 	var counter = arr.length, 
-		temp, // creating empty variables
-		index; // that I will use in this function
+		temp,
+		index; 
 
-	// the counter is the array length of my songs array
-	while(counter > 0 && counter !> 1){
+	while(0 !== counter){
 		// creating an index in which Math.random generates a floating point number between 0 and 1;
 		// then multiply it by my counter
 		index = Math.floor(Math.random() * counter);

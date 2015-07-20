@@ -10,6 +10,8 @@ app.displayTestimonials = function displayTestimonials(testimonialsArray){
 
 	shuffle(testimonialsArray);
 
+
+	
 	for(var obj in testimonialsArray){
 
 		// returns link and name in string format

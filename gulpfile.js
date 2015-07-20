@@ -34,10 +34,10 @@ gulp.task('css', function(){
 });
 
 gulp.task('js', function(){
-	gulp.src(['./js/testimonials.js','./js/shuffle.js','./js/main.js'])
-		.pipe(concat('concat.js'))
+	gulp.src(['./js/testimonials.js','./js/shuffle.js','./js/main.js','./js/listeners.js'])
 		.pipe(jsHint())
 		.pipe(jsHint.reporter('jshint-stylish'))
+		.pipe(concat('concat.js'))
 		.pipe(jsUglify())
 		.pipe(gulp.dest('./js'))
 		.pipe(reload({stream: true}));
