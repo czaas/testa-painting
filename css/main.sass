@@ -3,7 +3,7 @@ $font-rale: 'Raleway', sans-serif
 $yelp-red: #b22222 // #c41200
 $green-sent: #4CD964
 $box-shadow: 0 1px 1px #666
-$box-shadow-extend: 0 2px 3px #666;
+$box-shadow-extend: 1px 2px 1px #666;
 
 body
 	background: #eee
@@ -74,12 +74,25 @@ section
 	box-shadow: 0 1px 1px #666
 
 a.link
-		color: #222
-		border-bottom: 1px solid #222
-		transition: border .1s linear
-		text-decoration: none
-		&:hover
-			border-bottom: 1px solid transparent
+	color: #222
+	border-bottom: 1px solid #222
+	transition: border .1s linear
+	text-decoration: none
+	transition: content .2s ease
+	i.fa
+		color: rgba(34, 34, 34, 0)
+		transition: all .5s ease
+		margin-left: -10px
+		top: 1px
+		position: relative
+		padding: 0 0 0 5px
+		border-bottom: 1px solid transparent
+		font-size: 18px
+	&:hover
+		border-bottom: 1px solid transparent
+		i.fa
+			color: rgba(34, 34, 34, 1)
+			margin-left: 2px
 
 p
 	margin-bottom: 15px
@@ -107,7 +120,7 @@ form
 		background: #eee
 		padding: 8px 16px
 		width: auto
-		transition: all 2s ease
+		transition: all .2s ease
 		border-radius: 2px
 		box-shadow: $box-shadow
 		border: none
@@ -118,7 +131,6 @@ form
 		&.sent
 			background: #eee
 			color: #222
-			width: 100%
 			&:before
 				content: 'Sent!'
 			&:after
@@ -133,6 +145,7 @@ form
 		&:hover
 			cursor: pointer
 			background: #e2e2e2
+			box-shadow: $box-shadow-extend
 		&:focus
 			outline: none
 			box-shadow: $box-shadow-extend

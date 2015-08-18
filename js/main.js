@@ -6,7 +6,8 @@ app.displayTestimonials = function displayTestimonials(testimonialsArray){
 
 	var paragraphs,
 		linkAndName,
-		template;
+		template,
+		counter = 0;
 
 	shuffle(testimonialsArray);
 
@@ -21,12 +22,17 @@ app.displayTestimonials = function displayTestimonials(testimonialsArray){
 
 		template = '<div class="yelp">' + paragraphs + linkAndName + '</div>';
 		
-		$('#testimonials').append(template);
+		if(counter < 3){
+			$('#testimonials').prepend(template);
+			counter++;
+		} else {
+			return;
+		}
 	}
 
 
 	function createLinkName(link, name){
-		var linkName = '<p><strong><a href="' + link + '" target="_blank">' + name +  '</a></strong></p>';
+		var linkName = '<p><strong><a href="' + link + '" target="_blank">' + name +  '<i class="fa fa-angle-right"></i></a></strong></p>';
 		
 		return linkName;
 	}
