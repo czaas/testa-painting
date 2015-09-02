@@ -7,7 +7,8 @@ var gulp = require('gulp'),
 	minifyCss = require('gulp-minify-css'),
 	jsHint = require('gulp-jshint'),
 	jsUglify = require('gulp-uglify'),
-	concat = require('gulp-concat');
+	concat = require('gulp-concat'),
+	minifyHtml = require('gulp-minify-html');
 
 gulp.task('reload', function(){
 	bs.init({
@@ -16,11 +17,19 @@ gulp.task('reload', function(){
 
 	gulp.watch('./css/*.sass', ['css']);
 	gulp.watch('./js/*.js', ['js']);
-	gulp.watch('./*.html', ['html']);
+	gulp.watch('./html/*.html', ['html']);
 });
 
 gulp.task('html', function(){
-	gulp.src('./*.html')
+	
+	var opts = {
+		conditionals: true,
+		empty: true,
+	};
+	
+	gulp.src('./html/*.html')
+	.pipe(minifyHtml(opts))
+	.pipe(gulp.dest('./'))
 	.pipe(reload({stream: true}));
 });
 
