@@ -8,7 +8,8 @@ var gulp = require('gulp'),
 	jsHint = require('gulp-jshint'),
 	jsUglify = require('gulp-uglify'),
 	concat = require('gulp-concat'),
-	minifyHtml = require('gulp-minify-html');
+	minifyHtml = require('gulp-minify-html'),
+	lwip = require('lwip');
 
 gulp.task('reload', function(){
 	bs.init({
@@ -51,5 +52,31 @@ gulp.task('js', function(){
 		.pipe(gulp.dest('./js'))
 		.pipe(reload({stream: true}));
 });
+
+gulp.task('minify-images', function(){
+
+	//need to fs.readdir and for loop over all the images and run them through the minifyImage function
+
+	function minifyImage(img){
+		lwip.open(img, function(err, image){
+		
+		// check err...
+		// define a batch of manipulations and save to disk as JPEG:
+		image.batch()
+			.scale(0.25)          // scale to 25%
+			//.rotate(45, 'white')  // rotate 45degs clockwise (white fill)
+			//.crop(200, 200)       // crop a 200X200 square from center
+			//.blur(5)              // Gaussian blur with SD=5
+			.writeFile('output.jpg', function(err){
+				if(err) { console.error(err); }
+				
+				console.log('fin');
+			// check err...
+			// done.
+			});
+		});
+	}
+});
+
 
 gulp.task('default', ['reload']);
