@@ -40,6 +40,12 @@ header
 
 #banner
 	width: 100%
+	img
+		width: 25%
+		display: inline-block
+		vertical-align: middle
+		
+		
 h1
 	font-size: 26px
 	font-weight: bold
@@ -118,10 +124,10 @@ form
 		resize: none
 		height: 300px
 	button
-		background: #fff
 		display: block
 		font-size: 16px
-		background: #eee
+		background: rgba(0,0,255,.7)
+		color: #fff
 		padding: 8px 16px
 		width: auto
 		transition: all .2s ease
@@ -133,8 +139,8 @@ form
 			content: 'Send'
 			letter-spacing: 1px
 		&.sent
-			background: #eee
-			color: #222
+			color: #000
+			background: rgba(255,255,255,1)
 			&:before
 				content: 'Sent!'
 			&:after
@@ -142,13 +148,14 @@ form
 				color: $green-sent
 				border-radius: 50%
 			&:hover
-				background: #eee
 				cursor: auto
+				color: #000
+				background: rgba(255,255,255,1)
 			&:focus
 				box-shadow: $box-shadow
 		&:hover
 			cursor: pointer
-			background: #e2e2e2
+			background: rgba(0,0,255,1)
 			box-shadow: $box-shadow-extend
 		&:focus
 			outline: none
@@ -164,7 +171,6 @@ form
 
 article
 	font-family: $font-rale
-div
 
 div.yelp
 	box-sizing: border-box
