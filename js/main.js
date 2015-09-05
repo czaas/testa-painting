@@ -49,3 +49,24 @@ app.displayTestimonials = function displayTestimonials(testimonialsArray){
 };
 
 app.displayTestimonials(app.testimonials);
+
+app.generateImages = function(){
+	var amountOfImagesInFolder = 43;
+	var amountOfImagesToShow = 30;
+	var folderPath = '/images/min/';
+	var str = '';
+	var fileNameConvention = 'image-'; // image-num
+	
+	for(var i = 0; i < amountOfImagesToShow; i++){
+		var image = folderPath + fileNameConvention + Math.floor(Math.random() * amountOfImagesInFolder) + '.jpg';
+		var tag = '<li><img src="' + image + '" /></li>';
+		 
+		 str += tag;
+	}
+	
+	return str;
+};
+
+$('#banner').append(app.generateImages()).bxSlider({
+	mode: 'fade'
+}); 
