@@ -5,8 +5,13 @@ $green-sent: #4CD964
 $box-shadow: 0 1px 1px #666
 $box-shadow-extend: 1px 2px 1px #666;
 
+.mobile
+	display: none
+
 body
 	background: #eee
+	min-width: 320px
+	overflow: scroll
 header
 	width: 100%
 	padding: 30px
@@ -20,7 +25,7 @@ header
 		width: 220px
 		height: 105px
 		padding: 0
-		margin: 0
+		margin: 0 0 20px
 		text-indent: 103%
 		white-space: nowrap
 		overflow: hidden
@@ -29,19 +34,21 @@ header
 		font-family: $font
 		font-size: 18px
 		text-align: center
-		width: 364px
+		width: auto
 		box-sizing: border-box
 		display: inline-block
 		float: right
+		padding: 20px
 		.phone
 			font-size: 28px
-			display: block
 			margin: 20px 0
 
 .bannerWrapper
 	width: 100%;
 	max-width: 960px
-	margin: 0 auto
+	margin: 25px auto 0
+	img
+		vertical-align: middle
 		
 .bx-wrapper .bx-viewport
 	box-shadow: none !important
@@ -218,17 +225,25 @@ footer
 .md-2-3
 	width: 59%
 	
-@media (max-width: 650px)
+@media (max-width: 670px)
+	.mobile
+		display: inherit
 	header 
 		padding: 15
 		.content
 			display: table
 		.logo, .phone-serving
 			display: block
-			margin: 0 auto
+			margin: 0 auto 20px
 			float: none
 		.phone-serving
 			width: auto
+			padding: 20px 0 0
+			.phone
+				display: block
+				margin: 12px 0
+			p
+				font-size: .9em
 			
 	article
 		padding: 20px 15px
@@ -236,7 +251,3 @@ footer
 		width: 100%
 		margin: 0 0 10px
 	
-
-@media (max-width: 320px)
-	body
-		min-width: 320px

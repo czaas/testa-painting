@@ -4,33 +4,35 @@ app.testimonials = testimonialsArray;
 
 app.displayTestimonials = function displayTestimonials(testimonialsArray){
 
-	var paragraphs,
+	var arr = testimonialsArray.slice(), // creating a new reference rather than editing the original array
+		paragraphs,
 		linkAndName,
 		template,
 		counter = 0;
 
-	shuffle(testimonialsArray);
+	shuffle(arr);
 
-
-	
-	for(var obj in testimonialsArray){
-
-		// returns link and name in string format
-		linkAndName = createLinkName(testimonialsArray[obj].link, testimonialsArray[obj].name);
-		// returns testimony in string format
-		paragraphs = createParagraph(testimonialsArray[obj].testimony);
+	for(var obj in arr){
+		
+		linkAndName = createLinkName(arr[obj].link, arr[obj].name); // returns link and name in string format
+		
+		paragraphs = createParagraph(arr[obj].testimony); // returns testimony in string format surrounded by <p> tags
 
 		template = '<div class="yelp">' + paragraphs + linkAndName + '</div>';
 		
 		if(counter < 3){
 			$('#testimonials').prepend(template);
+			arr.splice(arr.indexOf(arr[obj]), 1);
+			
 			counter++;
 		} else {
 			return;
 		}
+		
 	}
 
-
+	
+	// helper functions
 	function createLinkName(link, name){
 		var linkName = '<p><strong><a href="' + link + '" target="_blank">' + name +  '<i class="fa fa-angle-right"></i></a></strong></p>';
 		
@@ -45,10 +47,10 @@ app.displayTestimonials = function displayTestimonials(testimonialsArray){
 
 		return str;
 	}
+	
+	return arr; // when finished displaying first three testimonials, it will return a new arr with only the testimonials that are ready to display on See more Testimonials button.
 
 };
-
-app.displayTestimonials(app.testimonials);
 
 app.generateImages = function(){
 
@@ -79,8 +81,15 @@ app.generateImages = function(){
 	}
 	
 	return str;
-};	
+}; 
 
 $('#banner').append(app.generateImages()).bxSlider({
-	mode: 'fade'
+	mode: 'fade',
+	speed: 350,
+	pager: false,
+	auto: true,
+	autoStart: true,
+	autoHover: true
 }); 
+
+var lastTestimonials = app.displayTestimonials(app.testimonials);
