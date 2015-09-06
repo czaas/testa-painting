@@ -32,28 +32,26 @@ app.buildTestimonial = function displayTestimonial(testimonialObj){
 	}
 	
 	return template;
-}
+};
 
-app.displayTestimonials = function displayTestimonials(testimonialsArray){
+app.displayTestimonials = function displayTestimonials(testimonialsArray, amount){
 
 	var arr = testimonialsArray.slice(), // creating a new reference rather than editing the original array
-		counter = 0;
-
+		amountToDisplay = arr.length - amount,
+		count = 0;
+		
 	shuffle(arr);
 
-	for(var obj in arr){
+	// Have a reversed loop because when I remove an item from the arr it gets re-indexed
+	for(var i = arr.length - 1; i >= amountToDisplay; i--){
 		
-		var template = app.buildTestimonial(arr[obj]);
+		var template = app.buildTestimonial(arr[i]);
+		var objIndex = arr.indexOf(arr[i]);
 		
-		if(counter < 3){
-			$('#testimonials').prepend(template);
-			arr.splice(arr.indexOf(arr[obj]), 1);
-			
-			counter++;
-		} else {
-			return;
-		}
+		$('#testimonials').prepend(template);
 		
+		arr.splice(objIndex, 1);
+		count++;
 	}
 
 	return arr; // when finished displaying first three testimonials, it will return a new arr with only the testimonials that are ready to display on See more Testimonials button.
@@ -100,4 +98,4 @@ $('#banner').append(app.generateImages()).bxSlider({
 	autoHover: true
 }); 
 
-var lastTestimonials = app.displayTestimonials(app.testimonials);
+var lastTestimonials = app.displayTestimonials(app.testimonials, 6);
