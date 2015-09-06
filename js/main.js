@@ -75,7 +75,7 @@ app.generateImages = function(){
 	var fileNameConvention = 'image-';
 	var usedNumbers = [];
 	
-	for(var i = 0; i < amountOfImagesToShow; i++){
+	for(var i = 1; i < amountOfImagesToShow; i++){
 		var randomImageNumber = Math.floor(Math.random() * amountOfImagesInFolder);
 		
 		var image = folderPath + fileNameConvention + randomImageNumber + '.jpg';
