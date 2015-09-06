@@ -37,7 +37,7 @@ app.buildTestimonial = function displayTestimonial(testimonialObj){
 app.displayTestimonials = function displayTestimonials(testimonialsArray, amount){
 
 	var arr = testimonialsArray.slice(), // creating a new reference rather than editing the original array
-		amountToDisplay = arr.length - amount,
+		amountToDisplay = (amount) ? arr.length - amount : arr.length,
 		count = 0;
 		
 	shuffle(arr);
@@ -48,13 +48,17 @@ app.displayTestimonials = function displayTestimonials(testimonialsArray, amount
 		var template = app.buildTestimonial(arr[i]);
 		var objIndex = arr.indexOf(arr[i]);
 		
-		$('#testimonials').prepend(template);
+		//$('#testimonials').before('#viewRemainingTestimonials').append(template);
+		
+		$(template).insertBefore('#viewRemainingTestimonials');
 		
 		arr.splice(objIndex, 1);
 		count++;
 	}
 
-	return arr; // when finished displaying first three testimonials, it will return a new arr with only the testimonials that are ready to display on See more Testimonials button.
+	if(arr.length > 0){
+		return arr; // when finished displaying first three testimonials, it will return a new arr with only the testimonials that are ready to display on See more Testimonials button.
+	}
 
 };
 
@@ -98,4 +102,9 @@ $('#banner').append(app.generateImages()).bxSlider({
 	autoHover: true
 }); 
 
-var lastTestimonials = app.displayTestimonials(app.testimonials, 6);
+var lastTestimonials = app.displayTestimonials(app.testimonials, 3);
+
+$('#viewRemainingTestimonials').on('click', function(){
+	app.displayTestimonials(lastTestimonials, 3);
+	$(this).remove();
+});
