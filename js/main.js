@@ -2,35 +2,18 @@ var app ={};
 
 app.testimonials = testimonialsArray;
 
-app.displayTestimonials = function displayTestimonials(testimonialsArray){
-
-	var arr = testimonialsArray.slice(), // creating a new reference rather than editing the original array
+app.buildTestimonial = function displayTestimonial(testimonialObj){
+	
+	var testimonial = testimonialObj,
 		paragraphs,
 		linkAndName,
-		template,
-		counter = 0;
-
-	shuffle(arr);
-
-	for(var obj in arr){
+		template;
+	
+	linkAndName = createLinkName(testimonial.link, testimonial.name); // returns link and name in string format
 		
-		linkAndName = createLinkName(arr[obj].link, arr[obj].name); // returns link and name in string format
-		
-		paragraphs = createParagraph(arr[obj].testimony); // returns testimony in string format surrounded by <p> tags
+	paragraphs = createParagraph(testimonial.testimony); // returns testimony in string format surrounded by <p> tags
 
-		template = '<div class="yelp">' + paragraphs + linkAndName + '</div>';
-		
-		if(counter < 3){
-			$('#testimonials').prepend(template);
-			arr.splice(arr.indexOf(arr[obj]), 1);
-			
-			counter++;
-		} else {
-			return;
-		}
-		
-	}
-
+	template = '<div class="yelp">' + paragraphs + linkAndName + '</div>';
 	
 	// helper functions
 	function createLinkName(link, name){
@@ -48,6 +31,31 @@ app.displayTestimonials = function displayTestimonials(testimonialsArray){
 		return str;
 	}
 	
+	return template;
+}
+
+app.displayTestimonials = function displayTestimonials(testimonialsArray){
+
+	var arr = testimonialsArray.slice(), // creating a new reference rather than editing the original array
+		counter = 0;
+
+	shuffle(arr);
+
+	for(var obj in arr){
+		
+		var template = app.buildTestimonial(arr[obj]);
+		
+		if(counter < 3){
+			$('#testimonials').prepend(template);
+			arr.splice(arr.indexOf(arr[obj]), 1);
+			
+			counter++;
+		} else {
+			return;
+		}
+		
+	}
+
 	return arr; // when finished displaying first three testimonials, it will return a new arr with only the testimonials that are ready to display on See more Testimonials button.
 
 };
@@ -71,7 +79,7 @@ app.generateImages = function(){
 		var image = folderPath + fileNameConvention + randomImageNumber + '.jpg';
 		var tag = '<li><img src="' + image + '" /></li>';
 			
-		if($.inArray(randomImageNumber, usedNumbers) === -1){ // if the number IS in the array
+		if($.inArray(randomImageNumber, usedNumbers) === -1){ // if the number is NOT in the array
 			usedNumbers.push(randomImageNumber); // add number to array
 			str += tag; // add <img> tag to string
 		} else {
