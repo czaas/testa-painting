@@ -92,5 +92,20 @@ gulp.task('minify-images', function(){
 	}
 });
 
+gulp.task('rename-images', function(){
+	fs.readdir('./_under_contruction/images/', function(err, files){
+		if(err){ console.error(err); }
+		
+		var currentDir = '_under_contruction/images/';
+		var destDir = 'images/min/';
+		
+		files.forEach(function(file, i, arr){
+			fs.copy(currentDir + file, destDir + 'image-' + i + '.jpg', function(err){
+				if(err) { console.error(err); } 
+			}); 
+		});
+	});
+});
+
 
 gulp.task('default', ['reload']);
