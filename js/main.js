@@ -79,7 +79,7 @@ app.generateImages = function(){
 		var randomImageNumber = Math.floor(Math.random() * amountOfImagesInFolder);
 		
 		var image = folderPath + fileNameConvention + randomImageNumber + '.jpg';
-		var tag = '<li><img src="' + image + '" /></li>';
+		var tag = '<li><img src="http://testapainting.com' + image + '" /></li>';
 			
 		if($.inArray(randomImageNumber, usedNumbers) === -1){ // if the number is NOT in the array
 			usedNumbers.push(randomImageNumber); // add number to array
@@ -104,7 +104,3 @@ $('#banner').append(app.generateImages()).bxSlider({
 
 var lastTestimonials = app.displayTestimonials(app.testimonials, 3);
 
-$('#viewRemainingTestimonials').on('click', function(){
-	app.displayTestimonials(lastTestimonials, 3);
-	$(this).remove();
-});

@@ -42,6 +42,12 @@ header
 		.phone
 			font-size: 28px
 			margin: 20px 0
+			color: #000
+			text-decoration: none
+			.fa-phone
+				font-size: 40px
+				vertical-align: middle
+				margin: 0 10px 0
 
 .bannerWrapper
 	width: 100%;
@@ -202,6 +208,27 @@ div.content
 		clear: both
 		content: ''
 		display: table
+
+#form-messages.success
+	&:after
+		font-family: 'fontawesome'
+		content: '\f058'
+		color: $green-sent
+		border-radius: 50%
+		display: table
+		margin: 30px auto 10px
+
+ul.errorMessages
+	li
+		margin: 0 0 5px
+		&:before
+			font-family: 'fontawesome'
+			content: '\f071'
+			color: #e5e500
+			margin-right: 5px
+			font-size: 24px
+		&:last-child
+			margin: 0 0 10px 
 
 footer
 	background: #404040
