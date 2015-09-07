@@ -10,7 +10,7 @@
         $message = $_POST["message"];
         
         // Set the recipient email address.
-        $recipient = "cameronzaas@gmail.com";
+        $recipient = "tony@testapainting.com";
 
         // Set the email subject.
         $subject = "TestaPainting.com: $name";
