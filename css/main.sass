@@ -21,23 +21,22 @@ header
 	box-shadow: 0 1px 3px #ccc
 	.logo
 		box-sizing: border-box
-		display: inline-block
 		width: 220px
 		height: 105px
 		padding: 0
-		margin: 0 0 20px
 		text-indent: 103%
 		white-space: nowrap
 		overflow: hidden
 		background: url(/images/logo.jpg) no-repeat top left
+	.logo, .phone-serving
+		display: block
+		margin: 0 auto 20px
 	.phone-serving
 		font-family: $font
 		font-size: 18px
 		text-align: center
 		width: auto
 		box-sizing: border-box
-		display: inline-block
-		float: right
 		padding: 20px
 		.phone
 			font-size: 28px
@@ -257,12 +256,6 @@ footer
 		display: inherit
 	header 
 		padding: 15
-		.content
-			display: table
-		.logo, .phone-serving
-			display: block
-			margin: 0 auto 20px
-			float: none
 		.phone-serving
 			width: auto
 			padding: 20px 0 0
@@ -277,4 +270,21 @@ footer
 	.md-1-2
 		width: 100%
 		margin: 0 0 10px
-	
+
+.socialMedia 
+	display: flex
+
+	& > div 
+		flex: 1
+		text-align: center
+		a 
+			display: block
+
+@media (min-width: 667px)
+	.header-content 
+		max-width: 1024px
+		margin: 0 auto
+		display: flex
+		justify-content: space-between
+		.phone-serving 
+			margin: 0
